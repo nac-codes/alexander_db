@@ -53,11 +53,21 @@ def multi_ngram_search(query, text, max_n=3):
     text_ngrams = [get_ngrams(text, i) for i in range(1, max_n+1)]
     
     score = 0
-    for n in range(max_n):
-        matches = set(query_ngrams[n]) & set(text_ngrams[n])
-        score += len(matches) * (n + 1)  # Weight by n-gram size
+    max_score = 0  # Initialize max_score to calculate the maximum possible score
     
-    return score / sum(range(1, max_n+1))  # Normalize score
+    # Calculate score
+    for n in range(1, max_n+1):
+        matches = set(query_ngrams[n-1]) & set(text_ngrams[n-1])
+        score += len(matches) * n
+        max_score += len(query_ngrams[n-1]) * n  # Accumulate maximum possible score
+    
+    # Normalize score
+    if max_score > 0:
+        normalized_score = score / max_score
+    else:
+        normalized_score = 0.0  # Handle the case where max_score is 0 (division by zero)
+    
+    return normalized_score
 
 def search_chunks(chunk_data, chunk_embeddings, query, model_name, cosine_weight, tokenizer=None, model=None, client=None):
     query_embedding = get_embedding(query, model_name, tokenizer, model, client)

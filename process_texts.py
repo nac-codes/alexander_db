@@ -64,9 +64,13 @@ def process_files(folder_path, model_name, tokenizer=None, model=None, client=No
 
         if filename.startswith('plutarch_lives_alexanderPage_'):
             title = 'Plutarch Lives Alexander'
+            volume = 'NA'
+            book = 'NA'
             page = filename.split('_')[-1].replace('.txt', '')
         elif filename.startswith('arrian_anabasispage_'):
             title = 'Arrian Anabasis'
+            volume = 'NA'
+            book = 'NA'
             page = filename.split('_')[-1].replace('.txt', '')
         elif filename.startswith('DIODORUS_SICULUS_Volume_'):
             title = 'Diodorus Siculus'

@@ -61,7 +61,7 @@ This project processes and analyzes ancient texts related to Alexander the Great
 
 2. To analyze the processed texts:
    ```
-   python analyze_texts.py [model]
+   python analyze_texts.py --model [model]
    ```
    - `[model]`: Either `bert` or `openai-gpt` (must match the model used in `process_texts.py`)
 
@@ -76,7 +76,7 @@ python process_texts.py --model openai-gpt
 
 Analyze texts:
 ```
-python analyze_texts.py openai-gpt 
+python analyze_texts.py --model openai-gpt 
 ```
 
 ## Troubleshooting
